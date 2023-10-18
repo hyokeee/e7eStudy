@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <input type="button" value="오리진체킁" onclick="fOrigin()">
+</body>
+<script>
+function fOrigin(){
+    // 아작스 변수는 항상 지역변수로
+    // 전역변수로 쓰는 건 1명의 심부름꾼을 여러명이 나누어 쓰는 것으로
+    // 결국 제대로 동작하려면 비동기가 아니고, 동기로 일을 시켜야 함
+    let xhr = new XMLHttpRequest();
+    // 아래 요청은 http://localhost:8272(Origin)이 같기 때문에 same-origin
+    // xhr.open("get","http://localhost:8272/jsstudy/AJAX/data.json",true);
+    xhr.open("get","https://e-7-e.tistory.com/",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            console.log("응답",xhr.responseText);
+        }
+    }
+    xhr.send();
+    
+}
+// Origin => 프로토콜 + 도메인 + 포트번호
+// 3가지 중 1개라도 다르면 다른 Origin
+// http://localhost:80 고과 https://localhost:80은 다른 Origin
+// Origin의 기본 정책은 Same-Origin Policy(SOP)
+// 제한사항을 두는 이유는 Ajax는 요청의 응답 결과를 변수에 받기 때문에
+// 마음대로 조작이 가능!
+
+</script>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+
+
+
+
+
+    //여기선 눈에 안보이는 처리만 할것임
+    //var queryString = location.href.split("?")[1];
+    // alert(queryString); // ?오른쪽 문자열만 가져옴
+    //title=제에목 writer=지으니 content=내용용
+
+   /* 
+   인코딩함수 escape encodeURI encodeURIComponent
+   디코딩함수 unescape decodeURI decodeURIComponent
+    */
+
+    //var items = queryString.split("&")
+    // 안타깝지만 아래 소스는 오직 한가지 경우에만 제대로 동작
+    // 요따위 경우 개발자는 일반화(generalization) 자동화(auto)를 해야 함
+    // var title = decodeURIComponent(items[0].split("=")[1]);
+    // var writer = decodeURIComponent(items[1].split("=")[1]);
+    // var content = decodeURIComponent(items[2].split("=")[1]);
+
+    var title = request.getParameter("title");
+    //alert("체킁1:"+title);
+    var writer = request.getParameter("writer");
+    //alert("체킁2:"+writer);
+    var content = request.getParameter("content");
+    //alert("체킁3:"+content);
+
+    var tblName = "hong";
+
+    // 로컬스토리지에 저장된 데이터 읽어오기
+
+    var gDatas = JSON.parse(localStorage.getItem(tblName));
+    var gesiGul = {};
+        gesiGul.id = gDatas[gDatas.length - 1].id -0 + 1;
+        gesiGul.title = title;
+        gesiGul.writer = writer;
+        gesiGul.content = content;
+        gesiGul.date = (new Date()).toDateString();
+
+    // 읽어온 데이터에 추가
+    gDatas.push(gesiGul);
+
+    //로컬 스토리지에 다시 저장
+    localStorage.setItem(tblName, JSON.stringify(gDatas));
+
+    alert("요청하신 게시글이 DB에 잘 저장되었어요");
+    location.href = "list.html";    // 주소 표시줄에 list.html을 쓴다
+    // alert(title + " " + writer + " " + content);
+</script>

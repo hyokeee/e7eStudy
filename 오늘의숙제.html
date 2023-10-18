@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div id="disp"></div>
+</body>
+<script>
+const hdisp = document.querySelector('#disp');
+
+let members = [
+    {name:"김수지",level:"post1"},
+    {name:"임석일",level:"post2"},
+    {name:"강서주",level:"post3"},
+    {name:"이경민",level:"post3"},
+    {name:"신진수",level:"post2"},
+];
+
+let levels = {
+    "post1":"대표님",
+    "post2":"전무님",
+    "post3":"사원님"
+}
+
+let tblStr = "<table border=1>";
+    tblStr += "<tr><th>넘버</th><th>이름</th><th>직급</th></tr>"
+
+    for(let i=0; i<members.length; i++){
+        tblStr += "<tr>";
+        tblStr += `<td>${i+1}</td>`;
+        tblStr += `<td>${members[i].name}</td>`;
+        tblStr += `<td>${levels[members[i].level]} </td>`;   
+        tblStr += "</tr>";
+    }
+
+    tblStr += "</table>";
+
+    hdisp.innerHTML = tblStr;
+
+    //직급에 pos1 2 3 이 아니고 해당하는 직급 대표님,전무님,사원님 나오게 작성하기
+</script>

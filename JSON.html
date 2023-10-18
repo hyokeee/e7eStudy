@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//JASON(JacaScript Object Notation) 자바스크립트 객체 표기법!
+// - 배열도 포함되는거나 마찬가지다
+//JASON 모르면 좌절(과락!!)
+/*
+//방법1 속성이 있는 상태로 객체 생성
+var name = "myname";
+var roze ={     //key값은 자동으로 문자열 처리됨(일부 꼭 "를 붙여야 하는 경우가 있음)
+    name:"roze",
+    age:26,
+    song:"Gone"
+}
+*/
+/* 방법2 빈 객체 생성 후 속성 추가
+var roze ={};
+roze.name = "roze";
+roze.age = 26;
+roze.song = "Gone";
+*/
+/*
+// 배열식 접근법은 .접근법보다 성능은 쪼메 떨어지지만 
+// 프로그램은 아주 유연하게 만들어줌!
+var name = "범진";
+var age = 100;
+var roze = {
+    [name]:"jenni",
+    [age]:27,
+    ["song"]:"solo"
+}
+
+roze[300] = "흥";      //변수 명명규칙에 숫자로 시작할 수 없음
+console.log("체크",roze);
+*/
+
+var name = "범진";
+var age = 100;
+var roze = {
+    [0]:"jenni",
+    [1]:27,
+    [2]:"solo",
+    length : 3
+}
+for(let i=0; i<roze['length']; i++){
+    alert(roze[[i]]);
+}
+console.log(roze[[1]]);
+</script>
+    

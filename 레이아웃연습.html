@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    /*
+        레이아웃 자체를 정말 잘 짜고 싶다면, grid를 공부해야 함!(추천)
+    */
+    div{
+        border : 2px solid black; /* 레이아웃을 나눌땐 일단 border가 눈에 보이게 */
+    }
+    #wrapper{
+        width : 98vw;
+        height : 97vh;
+    }
+    .row{
+        height : 33%; /* %를 주면 부모기준 */
+        vertical-align: top; /* 요거 필요할 때가 꽤 있음!!*/
+    }
+    .col{
+        display : inline-block; /* 옆에 누가 오는 걸 허락해야 함 */
+        width : 48%;
+        height : 100%;
+        vertical-align: top; /* 요거 필요할 때가 꽤 있음!!*/
+    }
+    .kwak{
+        height : 32%;
+    }
+</style>
+</head>
+<body>
+<!-- 전체 영역 div 보통 wrapper나 container란 이름으로 많이 사용 -->
+<div id="wrapper">
+    <div class="row">흥</div>
+    <div class="row">
+        <div class="col">치</div>
+        <div class="col">
+            <div class="kwak">곽</div>
+            <div class="kwak">우</div>
+            <div class="kwak">재</div>
+        </div>
+    </div>
+    <div class="row">뿡</div>
+</div>
+</body>
+</html>

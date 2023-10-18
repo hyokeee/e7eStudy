@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+    //삭제!
+    let gid = request.getParameter('gid');
+
+    const tblName = "hong";
+    let datas = JSON.parse(localStorage.getItem(tblName));
+    for(let i=0; i<datas.length; i++) {
+        if(datas[i].id == gid) {   // id 값이 같다면 덮어쓰기!
+            datas.splice(i, 1);
+            break;
+        }
+    }
+    
+    // 다시 localStorage에 덮어 써줘야한다.
+    localStorage.setItem(tblName, JSON.stringify(datas));
+    alert('아마 잘 삭제 되었을걸용');
+    location.replace("list.html");  //list.html로 이동
+</script>

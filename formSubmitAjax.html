@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="vicBell">
+        id <input type="text" name="n_name" value="" required><br>
+        tel <input type="text" name="n_tel" value="" required><br>
+        <button>전송</button>
+        <!-- button이 form 태그 사이에 들어가면 기본 type이 submit이 됨 -->
+        <!-- <button type="submit" onclick="fAjax()">전송</button>  -->
+        <!-- <input type="submit" value="전송"> 위 버튼과 같은 표현-->
+        <!-- url 뒤에 값이 넘어가는걸 쿼리스트링이라고 부른다 -->
+
+    </form>
+<script>
+    /*
+        submit 버튼에 onclick 이벤트 걸지 말고,
+        form 태그에 onsubmit 이벤트를 걸어줘야, required, pattern등
+        새로나온 유효성 체크 속성들을 편하게 같이 사용할 수 있음!
+    */
+    const vicBell = document.querySelector('#vicBell');
+    // form 전송 직전에 발생하는 이벤트
+    vicBell.addEventListener("submit",fAjax);
+    function fAjax(){
+        // 여기에 아작스를 쓰면 ?? 페이지가 넘어가는데,, 이상해진다
+        /*
+          type을 button으로 바꾸면 직접 유효성 체크를 해야함!
+        */
+
+        event.preventDefault(); // built-in 기능 막기 -> submit 막음
+        let xhr = new XMLHttpRequest();
+        xhr.open("get","/jsstudy/AJAX/data.json",true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                console.log("체킁:",JSON.parse(xhr.responseText));
+                console.log("체킁2:",xhr.responseText);
+            }
+        }
+        xhr.send();
+    }
+</script>
+</body>
+</html>

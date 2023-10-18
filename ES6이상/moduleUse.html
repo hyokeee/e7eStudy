@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script type="module">
+    // 수입하깅
+    import { blackPink as bP } from "./idolModule.js";
+    import { itzy as iZ } from "./idolModule.js";
+    // import 한 내용은 다른 script 블록에서 공유되지 않는다 !
+    // 모듈끼리도 공유 안됨!
+    // 근데 모듈끼린 전역변수는 공유 가능하다
+    console.log("있지:", iZ);
+    console.log("있지 인사:", iZ.insa());
+    window.merong = "졸리다";
+    let myInsa = "나는 나얌";
+    window.bP = bP;
+    window.iZ = iZ;
+</script>
+
+
+<script type="module">
+    // export 시 default로 해주면 {} 를 쓰지 않고 import 할 수 있다.
+    import myKangHuck from './idolModule.js';   //기본적으로 khuck 함수가 수입됨
+
+    myKangHuck('dd');
+//console.log("module", myInsa);  // 공유안됨
+    console.log("module", bP);        // 공유됨
+</script>
+<script>
+    //console.log("an module", myInsa); // 공유안됨
+    //console.log("an module", bP);       // 공유안됨
+</script>

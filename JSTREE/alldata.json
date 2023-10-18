@@ -1,0 +1,18 @@
+[
+    { "id" : "S1", "parent" : "#", "text" : "SI 사업부","icon":"glyphicon glyphicon-home"},
+    { "id" : "S2", "parent" : "#", "text" : "솔루션 사업부","alias":"ㅋㅋㅋ" },
+    { "id" : "S3", "parent" : "#", "text" : "AI 사업부" },
+    { "id" : "S4", "parent" : "#", "text" : "B 사업부"},
+    { "id" : "S41", "parent" : "S4", "text" : "우하하하"},
+    { "id" : "S11", "parent" : "S1", "text" : "공공SI"},
+    { "id" : "S12", "parent" : "S1", "text" : "일반SI","icon":"glyphicon glyphicon-user"},
+    { "id" : "S21", "parent" : "S2", "text" : "그룹웨어" },
+    { "id" : "S22", "parent" : "S2", "text" : "MES" },
+    { "id" : "S23", "parent" : "S2", "text" : "ERP" },
+    { "id" : "S31", "parent" : "S3", "text" : "이미지처리" },
+    { "id" : "S32", "parent" : "S3", "text" : "음성처리" },
+    { "id" : "S33", "parent" : "S3", "text" : "자연어처리" },
+    { "id" : "S231", "parent" : "S23", "text" : "김수지"},
+    { "id" : "S411", "parent" : "S41", "text" : "윤강혁","handsome" : "예"},
+    { "id" : "S412", "parent" : "S23", "text" : "윤강혁1","handsome" : "예"}
+]

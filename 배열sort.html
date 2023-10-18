@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script>
+    //배열의 sort, 이상하게 딱 기본만 사용함(...안타까움)
+    
+    let jsonArr = [
+        {name:"민우",age:40},
+        {name:"승종",age:35},
+        {name:"기덕",age:30},
+        {name:"경민",age:20},
+        {name:"진수",age:15}
+    ];
+    jsonArr.sort(); //덩어리(여러특성가짐)는 기준 없이 정렬할 수 없다.
+    console.log("미웡:",jsonArr);
+    
+    jsonArr.sort(function(a,b){
+        // console.log("a",a)  //덩어리 쨰 가져옴
+        if(a.name>b.name){
+            return 1;
+        }else{ 
+            return -1;
+        }
+    });
+    console.log("미웡:",jsonArr);
+    jsonArr.sort(function(a,b){ //나이 기준 정렬
+        console.log("a",a);
+        console.log("b",b);
+        return a.age - b.age;
+    });
+    console.log("미웡:",jsonArr);
+
+    /*
+    let fNames = ["수지","미지","강혁","하늘","은비"];
+    //fNames.sort(); // 강혁 미지 수지 은비 하늘 오름차순 정렬됨
+    //alert("지" > "수");
+    //alert("a".charCodeAt(0));
+    //alert("A".charCodeAt(0));
+    fNames.sort(function(a,b){  //문자끼리 뺄 순 없지만 부등호로 비교(유니코드표)할 수 있음 ==> 뺀 것 처럼 숫자를 만들어준다.
+        
+        // alert(parseInt(b));  // NaN (Not a Number);
+        if(b>a){
+            return 1;
+        } else{
+            return -1;
+        }
+    }); //이건 안됨 why 문자끼리 뺄 수 없음!!
+    
+    console.log("숫자아님 체킁:",fNames);
+    */
+    
+    /*
+    let testArr = [4,9,6,3,1];
+    //testArr.sort();                 //기본 오름차순으로 정렬
+    testArr.sort(function(a,b){
+        console.log("a",a,"b",b);
+        return a-b;
+    });                                 // 오름차순
+    console.log("체킁:",testArr);
+
+    //내림차순으로 정렬?
+
+    let testArr2 = structuredClone(testArr);    //객체복사함수->새로 멋지게 추가됨
+    testArr2.sort(function(a,b){
+        
+        return b-a;
+    });
+    console.log("체킁2:",testArr2);
+    */
+</script>

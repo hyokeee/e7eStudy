@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#wrapper{
+    width : 500px;
+    margin : 30px auto; /* 수평 가운데 정렬 */
+    border : 1px solid blueviolet;
+}
+
+.mark{  /* 현재 페이지 표시 */
+    color:red;
+    font-size : 5em;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+    <hr>
+    <h1 style="text-align: center;">볼품없는 게시판</h1>
+    <hr>
+    <div id="disp"></div>
+
+    <a href="write.html">새글 쓰기</a>
+</div>
+<script src="./jsp.js"></script>
+<script>
+    // 로컬 스토리지 읽어오기
+    var tblName = "hong";
+    var gesiGuls = JSON.parse(localStorage.getItem(tblName));
+
+    // 1  0~9
+    // 2  10 ~ 19
+    // 3  20 ~ 29
+    // 페이지 나누기 산수
+    const cntPerPage = 10;  // 페이지당 10개!
+    let totalCnt = gesiGuls.length;     // 전체 글 갯수!
+    let pageCnt = Math.ceil(totalCnt / cntPerPage);    // 올림
+    
+    // 페이지 값 받아오기!
+    let page = request.getParameter("page"); // 디폴트값 1
+    if(page == null){
+        page = 1;
+    }
+
+    let startIndex = (page-1) * cntPerPage;
+    let endIndex = startIndex + cntPerPage;     // < 부등호 쓸거라 -1 안함
+
+    //마지막 페이지 글 수는 항상 10개가 되지는 않음(부족할 수 있음)
+    if(endindex > totalCnt){
+        endIndex = totalCnt -1;
+    }
+
+    // 태그해석 + 이미지 로딩이 끝나면 발생!
+    
+    const cdisp = document.querySelector("#disp");
+    window.onload = () => {
+       
+        var tblTag = "<table border='1' style='margin : 2px auto;'>";
+        tblTag += "<tr><th>ID</th><th>제목</th><th>지은이</th><th>작성일</th></tr>";
+        for(let i=startIndex; i<endIndex; i++) {
+            if(gesiGuls.length <= i) break;
+           
+            tblTag += "<tr>";
+            tblTag += `<td>${gesiGuls[i].id}</td>`;
+            tblTag += `<td><a href="read.html?id=${gesiGuls[i].id}">${gesiGuls[i].title}</a></td>`;
+            tblTag += `<td>${gesiGuls[i].writer}</td>`;
+            tblTag += `<td>${gesiGuls[i].date}</td>`;
+            tblTag += "</tr>";
+       }
+       tblTag += "</table>";
+       let pageStr = "<br/>";
+       for(let i=1; i<=pageCnt; i++){
+            if(i==page){    //현재 페이지라면
+                pageStr += `<a class="mark" href="list.html?page=${i}">${i}</a>&nbsp;&nbsp;&nbsp;`;
+            }else{
+                pageStr += `<a href="list.html?page=${i}">${i}</a>&nbsp;&nbsp;&nbsp;`;
+            }
+       }
+       // 페이지 문자열 리스트 문자열에 추가하기
+       tblTag += pageStr;
+       cdisp.innerHTML = tblTag;
+    }
+
+</script>
+</body>
+</html>

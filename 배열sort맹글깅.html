@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //function class로 사용
+    function MyArray(){
+        this.length = 0;
+        return this;    //요건 생략 가능
+    }
+    MyArray.prototype.push = function(pVal){
+        this[this.length] = pVal;
+        this.length++;
+        return this; // 메서드 체인닝
+    }
+
+    MyArray.prototype.sort = function(pCallback){
+        for(let j=0; j<this.length;j++){
+            for(let i=j+1; i<this.length; i++) {
+                // pCallback 콜백함수 사용!!
+                if(pCallback(this[i],this[j]) < 0){  //자리교환해야함
+                    let temp = this[j];
+                    this[j] = this[i];
+                    this[i] = temp;
+                }
+            }
+        }
+        return this; //메서드 체인닝
+    }
+    
+    // Test
+    let sujiArr = new MyArray();
+    sujiArr.push(2).push(9).push(3).push(8).push(4).push(7);
+    // 먼저 값 확인
+    console.log("처음상태:",sujiArr);
+
+    sujiArr.sort(function(a,b){
+        if(a>b){
+            return -1;
+        }else{
+            return 1;
+        }
+    });
+    console.log("sort 후 상태:",sujiArr);
+    //정렬(bubble 정렬)
+    let testArr = [5,7,2,8,4,6];
+
+
+    
+
+    /*배열 안의 가장 큰 값을 구하고싶다
+    let myMax = testArr[0]; // 첫번째 값을 맥스라 가정
+    for(let i = 0; i < testArr.length; i++){
+        if(testArr[i]>myMax){
+            myMax = testArr[i];
+        }
+    }
+    alert("최고가는:"+myMax);
+    */
+
+    /* 값 교환로직 -> 거의 정형화 되어 있음
+       가끔 외국계 회사에서 temp 안쓰고 바꿔보라고 문제 냄
+       보통 그런 문제는 값이 다 숫자여서 산수를 잘해야 함(답 안가르쳐 줌)
+    let aa = "진수";
+    let bb = "석일";
+    let temp = aa;
+    aa = bb;
+    bb = temp;
+    alert(aa + " " + bb);   //석일진수
+    */
+   
+    /* 교환로직과 최고가 구하는 로직을 합쳐서 index 0에 가장 큰 값
+    for(let i=1; i<testArr.length; i++) {
+        if(testArr[i]>testArr[0]){  //자리교환해야함
+            let temp = testArr[0];
+            testArr[0] = testArr[i];
+            testArr[i] = temp;
+        }
+    }
+
+    for(let i=2; i<testArr.length; i++) {
+        if(testArr[i]>testArr[1]){  //자리교환해야함
+            let temp = testArr[1];
+            testArr[1] = testArr[i];
+            testArr[i] = temp;
+        }
+    }
+
+
+    */
+   //반복되는 for문을 보니 규칙이 보임!
+   // 아래 작성한 것을 버블(거품) 정렬이라고 부름!
+   /*
+    for(let j=0; j<testArr.length;j++){
+        for(let i=j+1; i<testArr.length; i++) {
+            if(testArr[i]>testArr[j]){  //자리교환해야함
+                let temp = testArr[j];
+                testArr[j] = testArr[i];
+                testArr[i] = temp;
+            }
+        }
+    }
+    alert("체킁:" + testArr);   //항상 눈으로 확인
+    */
+</script>
+   

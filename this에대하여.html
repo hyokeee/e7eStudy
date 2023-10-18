@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//this(이것,나, 누가 말하냐에 따라 가리키는 대상이 달라짐)
+function fthis(){   //전역함수를 선언하는 것은 window의 메서드를 선언
+    console.log("this",this);   // 요때 this는?   window
+}
+//fthis();
+window.fthis(); // 위에 거와 동일!
+
+var merong = "구여운 하느리";   //전역변수를 선언하는 것은 window의 속성선언
+// alert(window.merong); //? 
+
+var isi = {name : "임석일",hobby:"간당간당안지각"};
+isi.jikak = fthis;
+
+// this가 어떻게(context맥락에 따라) 불리느냐에 따라 가리키는 대상이 바뀜
+isi.jikak();    // 요때 this는?  object
+
+</script>

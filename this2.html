@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <button id="hukBtn">흥치뿡</button>
+</body>
+<script>
+//많이 억지스러운 예제! call,apply 둘 중에 1개랑 bind는 필수로 알아야 함!
+var myBtn = document.querySelector('#hukBtn');
+function fClick(pName){
+    alert(`${pName}님 안농하삼`);
+    console.log("bind This",this);
+}
+// ()을 붙이는 건 함수호출 문법이라 이벤트상관없이 실행되어버림
+// 이럴 때 쓰는게 bind() 바인드는 call하고 문법이 똑같음!
+// 하지만 call로 작성하면 바로 실행된다. 
+// call은 함수를 부름, bind는 함수를 부르지 않고 내부적으로 매개변수값을 가진 함수를 새로 만들어서
+// 그 함수의 포인터(참조값 - 함수명)을 되돌려 줌!
+myBtn.addEventListener('click',fClick.bind({name:"미래진수"},"병철박")); 
+
+
+// 맥락에 따라 this가 가리키는 대상이 바뀌는 건 인정하지만
+// 프로그램상 일일이 따져가며 하는 건 너무 힘들다. 대책을 내놓아라!
+// 그래서 출현 call, apply, bind 강제로 this가 가르키는 대상 세팅!
+
+function fthis(pArg,pArg2){
+    console.log("this",this,pArg,pArg2);
+}
+
+// call,apply 사용법 => 첫번째 매개변수는 무조건 this, 2번째 부터 매칭돼서 들어간다.
+fthis.call(document,"윤강혁","정수지오뎅?");
+fthis.call({name:"김수지"},"미누안미누","안운동");
+
+//apply는 배열[]로 매개변수를 줘야하는 것 빼고 call과 완벽하게 일치한다.
+//fthis.apply({huk:"메롱"},"김수지","태권도3단"); //에러
+fthis.apply({huk:"메롱"},["김수지","태권도3단"]); 
+
+</script>
+    

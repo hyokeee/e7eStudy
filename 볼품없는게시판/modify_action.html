@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script src="./jsp.js"></script>
+<script>
+    function ranDate(){
+        let jsj = new Date();   // 오늘 이순간!
+        // 오늘 부터 과거 90일 전까지 랜덤 날짜
+        jsj.setDate(jsj.getDate() - Math.round(Math.random()*90));
+
+        let mYear = jsj.getFullYear();
+        let mMonth = jsj.getMonth()+1;
+        if(mMonth < 10) mMonth = "0" + mMonth;
+
+        let mDate = jsj.getDate();
+        if(mDate < 10) mDate = "0" + mDate;
+
+        return `${mYear} - ${mMonth} - ${mDate}`;
+    }
+
+    //수정!
+    let gid = request.getParameter('gid');
+    let title = request.getParameter('title');
+    let content = request.getParameter('content');
+
+    const tblName = "hong";
+    let datas = JSON.parse(localStorage.getItem(tblName));
+    for(let i=0; i<datas.length; i++) {
+        if(datas[i].id == gid) {   // id 값이 같다면 덮어쓰기!
+            datas[i].title = title;
+            datas[i].content = content;
+            datas[i].date = ranDate();
+            break;
+        }
+    }
+    // 다시 localStorage에 덮어 써줘야한다.
+    localStorage.setItem(tblName, JSON.stringify(datas));
+    alert('아마 잘 수정 되었을걸용');
+    location.replace("list.html");  //list.html로 이동
+
+</script>

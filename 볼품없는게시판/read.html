@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#wrapper{
+    width : 500px;
+    margin : 30px auto; /* 수평 가운데 정렬 */
+    border : 1px solid blueviolet;
+}
+
+</style>
+
+</head>
+<body>
+<div id="wrapper">
+    <hr>
+    <h1 style="text-align: center;">볼품없는 게시판</h1>
+    <hr>
+    <form action="" method="get">
+        <input type="hidden" name="gid" value="">
+        <table border="1" width="500">
+            <tbody>
+                <tr>
+                    <td>제목</td>
+                    <td><input type="text" name="title" id="" value="" required></td>
+                </tr>
+                <tr>
+                    <td>지은이</td>
+                    <td><input type="text" name="writer" id="" value="" disabled></td><!-- readonly 전송은 됨/ disabled 전송 x-->
+                </tr>
+                <tr>
+                    <td>내용</td>
+                    <td><textarea rows="10" cols="20" name="content" required></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <!-- submit에는 onclick 걸지 않아용! -->
+                        <input type="submit" onclick="fkch('mod')" value="수정">
+                        <input type="submit" onclick="fkch('del')" value="삭제">
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+
+    </form>
+</div>
+<script src="./jsp.js"></script>
+<script>
+    function fkch(pAction){
+        var myForm = document.forms[0]; // form 태그는 id 안줘도 접근 가능
+        event.preventDefault(); // 내장 이벤트 기능 막고 막깅!
+        if(pAction == "mod"){
+            myForm.action = "modify_action.html";
+        }
+        if(pAction == "del"){
+            myForm.action = "delete_action.html";
+        }
+        // 전송을 직접할 수 밖에, 내장 이벤트 기능을 막았기 때문
+        myForm.submit();
+    }
+
+
+    const myTitle = document.querySelector("[name=title]");
+    const myWriter = document.querySelector("[name=writer]");
+    const myContent = document.querySelector("[name=content]");
+    const myGid = document.querySelector("[name=gid]");
+    let gid = request.getParameter("id");
+    myGid.value = gid;
+    let tblName = "hong";
+    let datas = JSON.parse(localStorage.getItem(tblName));
+    for(let i = 0; i<datas.length; i++){
+        if(datas[i].id == gid){
+            myTitle.value = datas[i].title;
+            myWriter.value = datas[i].writer;
+            myContent.value = datas[i].content;
+            break;
+        }
+    }
+</script>
+</body>
+</html>

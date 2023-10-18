@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <button onclick="fCk()">흥</button>
+
+</body>
+<script>
+// document.write는 요즘은 사용이 안 권장되고 있음
+// document 일단 한 번 완성된 뒤에 쓰면, document를 완전히 새로씀!(기존거 지움)
+function fCk(){
+    document.write("흥치뿡");
+}
+for(let i=1; i<=10; i++){
+    document.write(`<h1>수지미웡${i}</h1>`);
+}
+
+// document.write("<h1>완존메롱</h1>");
+/*
+function prt(msg){
+    document.write(msg);
+}
+*/
+// 참조(Reference)를 제대로 이해한 사람이라면.... 그런데,, Illegar invocation(불법호출)에러발생
+// 머징,, 원래 안되나보다!
+/* var prt = document.write.bind(document);    //this값을 강제로 document로 !
+
+prt("<h1>완존메롱</h1>");
+prt("<h1>나 병철이얌!</h1>"); */
+</script>
+<!-- write 안에 this가 있다면 this 가 document를 가르킴
+    근데 var prt로 받으면 window 속성을 받으므로 this가 window로 바뀜 -> illegar invocation
+    그래서 this를 document로 강제로 바꿔준거임 
+    -->

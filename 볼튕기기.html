@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+    #ball{
+        position : absolute;
+        width : 100px;
+        height : 100px;
+        border-radius : 50%; /* 테두리를 동그랗게 */
+        background-image : url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCQkPx7_hH75lFJW1lg9jcWjUhp8NvJ9zFKg&usqp=CAU");
+        background-size : 100% 100%;
+      /*  transform :  skewX(45deg);    skew 뒤틀리당 */
+    }
+</style>
+</head>
+<body>
+    
+    <button onclick="fMove(this)">움지경 실성?</button>
+    <div id="ball"></div>
+    <script>
+        const myBall = document.querySelector('#ball');
+        let mvWidth = 10;   //움직이는 폭
+        let mvHeight = 5;   //움직이는 폭
+        let rotGak = 0;     //회전각
+        let isMoving = false;
+        const fMove = (pthis) => {
+            console.log(pthis);
+            if(isMoving) {
+                return;
+            }
+            isMoving = true;
+            if(!myBall.style.left){  // 값이 설정되어 있지 않다면
+                myBall.style.left = "50px";
+                myBall.style["top"] = "50px";
+            }
+            //숙제)버튼 한번만 작동하게하기
+            rotGak = rotGak + 10;
+
+            myBall.style.left = parseInt(myBall.style.left) + mvWidth +"px"; // 오른쪽으로 이동! jsp에선 parseInt하면 알아서 숫자만 뽑아와준다.
+            myBall.style.top = parseInt(myBall.style.top) + mvHeight + "px";
+            myBall.style.transform = `rotate(${rotGak}deg)`;
+            var leftSu = parseInt(myBall.style.left);
+            var topSu = parseInt(myBall.style.top);
+            // 오른쪽 or 왼쪽 충돌 구현
+            if((leftSu + 100) >= window.innerWidth ||leftSu <= 0 ){
+                mvWidth = -mvWidth; // -1 * mvWidth;
+                myBall.style.transform = `rotate(${rotGak}deg) skewX(45deg)`;
+            }
+            // 아래쪽 or 위쪽 충돌 구현
+            if((topSu + 100) >= window.innerHeight || topSu <=0 ){
+                mvHeight = -mvHeight; // -1 * myHeight;
+                myBall.style.transform = `rotate(${rotGak}deg) skewY(45deg)`;
+            }
+            setTimeout(() => {
+             isMoving = false; 
+             fMove();
+             }, 500);
+         }
+         
+
+         
+    </script>
+</body>
+</html>

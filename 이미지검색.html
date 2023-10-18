@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input id="tsch" value=" ">
+    <input type="button" value="이미지찾깅" onclick="fsch()"><br><br>
+    <div id="disp"></div>
+<script>
+
+    function fsch(){
+        //script 태그들
+        
+        //script 태그를 만들어 줘야 함!
+        var myScript = document.createElement("script");
+        myScript.src = preURL + vtsch.value + postURL;
+        document.head.appendChild(myScript); //흥흥흥!
+
+        document.head.removeChild(myScript);
+  /*       var scripts = document.querySelectorAll('script');
+        for(var i = 0; i<scripts.length; i++){
+            document.head.removeChild(scripts[i]); */
+        }
+    
+
+    var preURL = "https://www.flickr.com/services/feeds/photos_public.gne?tags=";
+    var postURL = "&format=json";
+    var vtsch = document.querySelector('#tsch');
+    var vdisp = document.querySelector('#disp');
+    // 함수를 미리 정의 해둠!
+    // 왱? 호출 당할 걸 알고 있으니까 미리 준비!!
+    function jsonFlickrFeed(pData){
+        var bumjins = pData.items;
+        vdisp.innerHTML = '';
+
+        for(let i = 0; i<bumjins.length; i++){
+            console.log('이미지URL',bumjins[i].media.m);
+            var vImg = document.createElement('img');   // img 태그 생성!
+            vImg.src = bumjins[i].media.m;
+            vdisp.appendChild(vImg);    //화면에 심어야 눈에 보임
+        }
+        //console.log(pData);
+    }
+</script>
+<script src="https://www.flickr.com/services/feeds/photos_public.gne?tags=cat&format=json"></script>
+</body>
+</html>

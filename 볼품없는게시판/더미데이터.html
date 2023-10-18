@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//localStorage에 더미데이터 만들기(몽고디비형태)
+var tblName ="hong";    // 테이블이름
+
+var datas = [];         // 빈 배열
+for(let i=1; i<=108; i++){  // 108번뇌
+    var gesiGul = {};       // 빈 객체
+    gesiGul.id = i;         // pk로 사용할 것(곧 유일한 값 - 검색 용이)  
+    gesiGul.title = "타이틀"+i;
+    gesiGul.writer = "지으니" + i;
+    gesiGul.content = "내용"+i;
+ /*  객체 지향DB는 플렉시블하다
+   if(i==5){
+        gesiGul.merong = "메에롱";
+    }
+    if(i==6){
+        gesiGul.merong = ["흥","치","뿡"];
+    }
+ */
+    gesiGul.date = (new Date()).toDateString();
+    
+    datas.push(gesiGul);    // 배열에 담기
+}
+
+//localStorage에 저장
+localStorage.setItem(tblName,JSON.stringify(datas));
+
+</script>
